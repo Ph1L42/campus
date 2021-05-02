@@ -1,3 +1,5 @@
+import studiplayer.basic.BasicPlayer;
+
 public abstract class SampledFile extends AudioFile {
 
     public SampledFile() {
@@ -8,21 +10,23 @@ public abstract class SampledFile extends AudioFile {
         super(pathName);
     }
 
+    //Aufgabe d
     @Override
     public void play() {
-
+        BasicPlayer.play(getPathname());
     }
 
     @Override
     public void togglePause() {
-
+        BasicPlayer.togglePause();
     }
 
     @Override
     public void stop() {
-
+        BasicPlayer.stop();
     }
 
+    //Aufgabe h
     @Override
     public String getFormattedDuration() {
         return timeFormatter(duration);

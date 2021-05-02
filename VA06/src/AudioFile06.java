@@ -1,18 +1,18 @@
-import java.io.File;
+public class AudioFile06 {
 
-public abstract class AudioFile {
 
-    //private static char sep;
-    //private static String root = "/";
+    private static char sep;
+
+    private static String root = "/";
 
     public static final String PATH_SEPARATOR = "\\\\";
 
     //Variablen
-    protected String pathname, filename, author, title;
-    protected Long duration;
+    private String pathname, filename, author, title;
 
     private final char separatorChar = System.getProperty("file.separator").charAt(0);
 
+    //Methode um zu bestimmen ob das Betriebssystem Windows ist
     public String getAuthor() {
         return author;
     }
@@ -21,22 +21,12 @@ public abstract class AudioFile {
         return title;
     }
 
-    public Long getDuration(){
-        return duration;
+    public AudioFile06() {
     }
 
-    public AudioFile() {
-    }
-
-    public AudioFile(String pathname) {
+    public AudioFile06(String pathname) {
         this.pathname = pathname;
         parsePathname(pathname);
-
-        File file = new File(getPathname());
-        if (!file.canRead()){
-            throw new RuntimeException("Fehler: Datei existiert nicht " + pathname);
-        }
-
         this.filename = getFilename();
         parseFilename(filename);
     }
@@ -50,10 +40,13 @@ public abstract class AudioFile {
     }
 
     //Pfadnamen bestimmen
+
     public void parsePathname(String pathName) {
 
 
         //Wenn pathName nach trennung leer ist wird pathName (ohne leerzeichen) zurückgegeben
+
+
         if (pathName.trim().isEmpty()) {
             pathname = pathName;
         }
@@ -93,6 +86,19 @@ public abstract class AudioFile {
                     pathName = pathName.replace("//", "/");
                 }
 
+                //?????
+/*                String[] parts2 = pathName.split("/");
+                if (parts2.length > 1 && parts2[1].length() == 1) {
+                    parts2[1] = parts2[1];
+                    pathName = String.join("/", parts2);
+                    pathName = pathName.replaceFirst("/", "");
+
+                *//*if (pathName.charAt(1) == ':') {
+                    pathName = pathName.replace(":", "/");
+                    pathName = "/" + pathName;
+
+                 *//*
+                }*/
                 pathname = pathName;
             }
         }
@@ -143,7 +149,7 @@ public abstract class AudioFile {
             //System.out.println(Arrays.toString(pathAndTitle));
             if (pathAndTitle.length == 1 && pathAndTitle[0].equals(pathName)) {
                 author = "";
-                title = pathName.split("\\.")[0];
+                title = pathName;
             } else {
                 //String fileName = pathParts[pathParts.length - 1].trim();
 
@@ -179,15 +185,6 @@ public abstract class AudioFile {
         }
     }
 
-    //Abstrakte Methoden
-    public abstract void play();
-    public abstract void togglePause();
-    public abstract void stop();
-    public abstract String getFormattedDuration();
-    public abstract String getFormattedPosition();
-    public abstract String[] fields();
-
-
 
     @Override
     public String toString() {
@@ -205,8 +202,72 @@ public abstract class AudioFile {
 
 
     public static void main(String[] args) {
+    /*
+        sep = System.getProperty("file.separator").charAt(0);
+        String osname = System.getProperty("os.name");
+        if (osname.toLowerCase().indexOf("win") >= 0)
+            root = "C:" + sep;
+        String[] pathNames = new String[]{
+                "home" + sep + "meier" + sep + "Musik" + sep + "Falco - Rock Me Amadeus.mp3",
+                "home" + sep + "db-admin" + sep + "Frankie Goes To Hollywood - The Power Of Love.ogg",
+                root + "tmp" + sep + "Deep Purple - Smoke On The Water.wav",
+                root + "my-tmp" + sep + "file.mp3",
+                "Falco - Rock Me Amadeus.mp3",
+                "file.mp3",
+                ".." + sep + "music" + sep + "audiofile.au",
+                "   A.U.T.O.R   -   T.I.T.E.L   .EXTENSION",
+                "Hans-Georg Sonstwas - Blue-eyed boy-friend.mp3",
+                // Some more ugly test cases.
+                // Note that arbitrary combinations of / and \ are provided.
+                // Consecutive occurrences of these are to be squeezed and
+                // replaced by a single separator that corresponds to
+                // the platform running the application (use System.getProperty("file.separator").charAt(0)).
+                // Further note that spaces and tabs (white space) are not
+                // altered by this normalization.
+                "",
+                " ",
+                "//your-tmp/part1//file.mp3/",
+                "../your-tmp/..//part1//file.mp3/",
+                "\\file.mp3",
+                "\\part1\\\\file.mp3\\",
+                "\\part1///file.mp3",
+                "/MP3-Archiv/.nox",
+                "/MP3-Archiv/Falco - Rock me Amadeus.",
+                "-",
+                " -  "
+        };
 
+        for (int i = 0; i < pathNames.length; i++) {
+            AudioFile af = new AudioFile(pathNames[i]);
+            //System.out.print(i);
+            System.out.println(af.getTitle());
+        }
+
+        AudioFile af = new AudioFile("C:\\Users\\phili\\Desktop\\MusikFürDenPlayer\\Hans-Georg Sonstwas -  Blue-eyed boy-friend.mp3\\");
+        AudioFile af2 = new AudioFile("//my-tmp////part1//file.mp3/");
+       /* System.out.println(af.separatorChar);
+
+        if (af.isWindows())
+            System.out.println("unter windows!");
+        String path = " Falco  -  Rock me    Amadeus .mp3  ";
+        String path = "   A.U.T.O.R   -  T.I.T.E.L  .EXTENSION";
+        String path = "   A.U.T.O.R   -  T.I.T.E.L  .EXTENSION";
+        af.parsePathname(path);
+        af.parseFilename(path);
+        System.out.println(af.getPathname());
+        System.out.println(af.getFilename());
+
+        af.parseFilename(path);
+        System.out.println(af.getAuthor());
+        System.out.println(af.getTitle());
+
+        //System.out.println(Arrays.toString("-".split("-")));
+        //System.out.println(Arrays.toString(" - ".split("-")));
+
+
+        System.out.println(af);
+        System.out.println(af2.getFilename());
+        */
     }
 
 }
-

@@ -130,7 +130,7 @@ public class AudioFileTest {
 		}
 	}
 
-	/*@Test
+	@Test
 	public void testFields() {
 		assertEquals("Array returned by method fields() is not correct for *.wav file",
 				"[wellenmeister, tranquility, , 02:21]", Arrays.asList(f1.fields()).toString());
@@ -139,7 +139,7 @@ public class AudioFileTest {
 		assertEquals("Array returned by method fields() is not correct for *.ogg file",
 				"[Wellenmeister, TANOM Part I: Awakening, TheAbsoluteNecessityOfMeaning, 05:55]",
 				Arrays.asList(f3.fields()).toString());
-	}*/
+	}
 
 	@Test
 	public void testNullTags() {

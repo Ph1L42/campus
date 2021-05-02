@@ -8,9 +8,10 @@ public class TaggedFile extends SampledFile {
         super(audiofile);
         readAndStoreTags(audiofile);
     }
-
-private String album;
+    
     //Aufgabe i (1)
+    private String album;
+
     public String getAlbum() {
         return album;
     }
@@ -70,6 +71,8 @@ private String album;
             felder[2] = getAlbum();
         }
         if (getFormattedDuration() == null || getFormattedDuration().isEmpty()) {
+            felder[3] = "";
+        } else {
             felder[3] = getFormattedDuration();
         }
         return felder;

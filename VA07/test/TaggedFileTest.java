@@ -76,7 +76,7 @@ public class TaggedFileTest {
     }
 
     // Test the fields() implementation in class TaggedFile
-    /*@Test
+    @Test
     public void test_fields_01() {
         assertEquals("Wrong fields",
                 "[Eisbach, Rock 812, The Sea, the Sky, 05:31]",
@@ -87,7 +87,7 @@ public class TaggedFileTest {
                 Arrays.asList(f2.fields()).toString());
     }
 
-     */
+
 
     // Class TaggedFile does only need one attribute (one for the album)
     // The others should have been moved to some super class
